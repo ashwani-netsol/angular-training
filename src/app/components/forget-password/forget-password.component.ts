@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-forget-password',
@@ -6,9 +6,6 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   styleUrls: ['./forget-password.component.scss']
 })
 export class ForgetPasswordComponent implements OnInit {
-
-  /** Add class to the root element for this component (app-login) */
-  @HostBinding('class') classes: string = 'app flex-row align-items-center';
 
   /**
    * To capture the email

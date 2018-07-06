@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-register',
@@ -6,9 +6,6 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
-  /** Add class to the root element for this component (app-login) */
-  @HostBinding('class') classes: string = 'app flex-row align-items-center';
 
   constructor() { }
 
