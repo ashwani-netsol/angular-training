@@ -7,7 +7,8 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'forget-password', component: ForgetPasswordComponent }
+    { path: 'forget-password', component: ForgetPasswordComponent },
+    { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'}
 ];
 
 @NgModule({
