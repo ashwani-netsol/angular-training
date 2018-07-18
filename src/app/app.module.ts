@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     AppRouting,
     AngularFireModule.initializeApp(environment.firebase, "test-firebase-ced8c"),
+    AngularFireAuthModule,
     AngularFirestoreModule
   ],
   providers: [],
