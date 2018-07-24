@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(6),
         Validators.maxLength(25)
-      ]),
-    })
+      ])),
+    });
   }
 
   // convenience getter for easy access to form fields
