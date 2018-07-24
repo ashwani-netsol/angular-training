@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
       ])),
       password: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(6),
         Validators.maxLength(25)
       ])),
@@ -38,7 +37,6 @@ export class LoginComponent implements OnInit {
     .then( data => {
       this.authService.setLoggedInStatus(true);
       this.router.navigate(['/dashboard']);
-      console.log(this.authService.getLoggedInStatus());
     } )
     .catch( err => this.loginError = err.message );
   }

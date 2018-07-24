@@ -5,13 +5,14 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { AuthService } from './auth.service';
+import { AngularFireAuth } from '../../../node_modules/angularfire2/auth';
 
 @Injectable({
   'providedIn': 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor (private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;

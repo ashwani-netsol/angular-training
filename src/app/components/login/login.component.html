@@ -30,9 +30,8 @@
                   <input class="form-control" [ngClass]="{ 'is-invalid': formControl.password.invalid && formControl.password.touched }" type="password" placeholder="Password" formControlName="password" name="password">
                   <div *ngIf="formControl.password.invalid && formControl.password.touched" class="invalid-feedback">
                     <div *ngIf="formControl.password.errors.required">Password is required</div>
-                    <div *ngIf="formControl.password.errors.pattern">Password must be include at one letter and one number.</div>
-                    <div *ngIf="formControl.password.errors.minLength">Password must be at least 6 characters long.</div>
-                    <div *ngIf="formControl.password.errors.maxLength">Password cannot be more than 25 characters long.</div>
+                    <div *ngIf="formControl.password.errors.minlength">Password must be at least 6 characters long.</div>
+                    <div *ngIf="formControl.password.errors.maxlength">Password cannot be more than 25 characters long.</div>
                   </div>
                 </div>
                 <div class="row">

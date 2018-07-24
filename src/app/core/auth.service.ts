@@ -11,11 +11,18 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth) {}
 
-
+  /**
+   * Getter for loggedInStatus
+   * @return boolean
+   */
   getLoggedInStatus () : boolean {
     return this.loggedInStatus;
   }
 
+  /**
+   * Setter for loggedInStatus
+   * @param isLoggedIn 
+   */
   setLoggedInStatus (isLoggedIn: boolean) : void {
     this.loggedInStatus = isLoggedIn
   }
