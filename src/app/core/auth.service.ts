@@ -8,8 +8,11 @@ export class AuthService {
 
   private loggedInStatus: boolean = false;
   redirectUrl: string = '/dashboard';
+  loggedIn: any;
 
-  constructor(public afAuth: AngularFireAuth) {}
+  constructor(public afAuth: AngularFireAuth) {
+    this.loggedIn = this.afAuth.auth.currentUser;
+  }
 
   /**
    * Getter for loggedInStatus
@@ -37,6 +40,19 @@ export class AuthService {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then( data => { resolve(data) } )
       .catch( err => { reject(err) } );
+    });
+  }
+
+  /**
+   * Interacts with Firebase to do a registration of new user
+   * @param email 
+   * @param password 
+   */
+  register(email: string, password: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(data => { resolve(data) })
+        .catch(err => { reject(err) });
     });
   }
 
