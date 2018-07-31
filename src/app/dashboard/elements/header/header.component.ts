@@ -11,10 +11,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private afAuth : AngularFireAuth) {
-    console.log('------------');
-    console.log(this.afAuth.auth.currentUser);
-    console.log('------------');
-
   }
 
   ngOnInit() {

@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   registerationForm: FormGroup;
   registerationError: string | boolean;
   registerationSuccess: string | boolean;
+  formBusy: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -29,11 +30,6 @@ export class RegisterComponent implements OnInit {
         Validators.pattern('^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
       ])),
       password: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(25)
-      ])),
-      confirmPassword: new FormControl(null, Validators.compose([
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(25)
@@ -60,21 +56,27 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.formBusy = true;
+    this.registerationError = false;
+    this.registerationSuccess = false;
     this.authService.register(this.registerationForm.value.email, this.registerationForm.value.password)
       .then(data => {
         let user = {
           id: data.user.uid,
-          name: this.formControlByName('fullName').value
+          name: this.formControlByName('fullName').value,
+          email: this.formControlByName('email').value
         };
         this.userService.createUser(user).then( () => {
           this.registerationError = false;
           this.registerationSuccess = 'Congratulations! You have registered successfully';
           this.registerationForm.reset();
+          this.formBusy = false;
         });
       })
       .catch(err => {
         this.registerationSuccess = false;
         this.registerationError = err.message
+        this.formBusy = false;
       });
   }
 }

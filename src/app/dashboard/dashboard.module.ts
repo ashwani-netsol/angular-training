@@ -5,12 +5,14 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { HeaderComponent } from './elements/header/header.component';
 import { SidebarComponent } from './elements/sidebar/sidebar.component';
 import { BreadcrumbBarComponent } from './elements/breadcrumb-bar/breadcrumb-bar.component';
+import { UserComponent } from './components/user/user.component';
+import { GreetingPipe } from './elements/pipes/greeting.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     DashboardRoutingModule
   ],
-  declarations: [DashboardComponent, HeaderComponent, SidebarComponent, BreadcrumbBarComponent]
+  declarations: [DashboardComponent, HeaderComponent, SidebarComponent, BreadcrumbBarComponent, UserComponent, GreetingPipe]
 })
 export class DashboardModule { }

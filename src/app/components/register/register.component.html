@@ -46,7 +46,7 @@
                 <div *ngIf="formControlByName('password').hasError('maxlength')">Password cannot be more than 25 characters long.</div>
               </div>
             </div>
-            <div class="input-group mb-4">
+            <div *ngIf="false" class="input-group mb-4">
               <div class="input-group-prepend">
                 <span class="input-group-text">
                   <i class="icon-lock"></i>
@@ -62,7 +62,10 @@
             </div>
             <div class="row">
               <div class="col-6">
-                <button class="btn btn-block btn-success" type="submit" [disabled] = "!registerationForm.valid">Create Account</button>
+                <button class="btn btn-block btn-success" type="submit" [disabled] = "!registerationForm.valid || formBusy">
+                  <b *ngIf="!formBusy">Create Account</b>
+                  <i class="fa fa-spinner fa-spin" *ngIf="formBusy"></i>
+                </button>
               </div>
               <div class="col-6">
                 <button class="btn btn-block btn-link px-0" type="button" routerLink="/">Already have an Account?</button>
