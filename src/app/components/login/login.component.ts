@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
+  /**
+   * convenience getter for easy access to form fields
+   */
   get formControl() { return this.loginForm.controls; }
 
   login () {
