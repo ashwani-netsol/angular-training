@@ -57,6 +57,18 @@ export class AuthService {
   }
 
   /**
+   * Send password reset link to the user
+   * @param email Email Address of the user
+   */
+  sendResetPasswordLink(email: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.sendPasswordResetEmail(email)
+        .then(data => { resolve(data) })
+        .catch(err => { reject(err) });
+    });
+  }
+
+  /**
    * Interacts with Firebase to logout user
    */
   logout() {
