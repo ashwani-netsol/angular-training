@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "test-firebase-ced8c",
+    "staging": "test-firebase-ced8c"
+  }
+}

@@ -1,0 +1,114 @@
+<div class="row">
+
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        <strong>List of Companies</strong>
+      </div>
+      <div class="card-body">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-striped table-bordered datatable dataTable no-footer users-list" id="DataTables_Table_0" role="grid"
+                aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
+                <thead>
+                  <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending"
+                      style="width: 60px;">Company</th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date registered: activate to sort column ascending"
+                      style="width: 148px;">Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr role="role" class="even" align="center" *ngIf="showSpinner">
+                    <td colspan="2">
+                      <i class="fa fa-spinner fa-pulse fa-3x fa-w-16"></i>
+                    </td>
+                  </tr>
+                  <tr role="row" class="odd" *ngFor="let company of companies | async">
+                    <td class="">{{ company.name }}</td>
+                    <td>
+                      {{ company.street }}<br />
+                      {{ company.city }} - {{ company.postalCode }}<br />
+                      {{ company.country }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        <strong>Create Company</strong>
+      </div>
+      <form [formGroup]="companyForm" novalidate class="needs-validation" (ngSubmit)="createCompany()">
+        <div class="card-body">
+            <div class="alert alert-success" *ngIf="companySuccess">{{ companySuccess }}</div>
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input type="text" [ngClass]="{ 'is-invalid': formControlInvalidOrUntouched('companyName') }" formControlName="companyName"
+                class="form-control" id="company" placeholder="Enter company name">
+              <div *ngIf="formControlInvalidOrUntouched('companyName')" class="invalid-feedback">
+                <div *ngIf="formControlByName('companyName').hasError('required')">Company Name is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Street</label>
+              <input type="text" [ngClass]="{ 'is-invalid': formControlInvalidOrUntouched('street') }" formControlName="street"
+                class="form-control" id="company" placeholder="Enter your street">
+              <div *ngIf="formControlInvalidOrUntouched('street')" class="invalid-feedback">
+                <div *ngIf="formControlByName('street').hasError('required')">Street is required</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-sm-8">
+                <label for="city">City</label>
+                <input type="text" [ngClass]="{ 'is-invalid': formControlInvalidOrUntouched('city') }" formControlName="city" class="form-control"
+                  id="city" placeholder="Enter your city">
+                <div *ngIf="formControlInvalidOrUntouched('city')" class="invalid-feedback">
+                  <div *ngIf="formControlByName('city').hasError('required')">City is required</div>
+                </div>
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="postal-code">Postal Code</label>
+                <input [ngClass]="{ 'is-invalid': formControlInvalidOrUntouched('postalCode') }" formControlName="postalCode" type="text"
+                  class="form-control" id="postal-code" placeholder="Postal Code">
+                <div *ngIf="formControlInvalidOrUntouched('postalCode')" class="invalid-feedback">
+                  <div *ngIf="formControlByName('postalCode').hasError('required')">Postal Code is required</div>
+                  <div *ngIf="formControlByName('postalCode').hasError('pattern')">Invalid Post Code</div>
+                  <div *ngIf="formControlByName('postalCode').hasError('minlength') || formControlByName('postalCode').hasError('maxlength')">
+                    Postal Code length should be 6
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input type="text" [ngClass]="{ 'is-invalid': formControlInvalidOrUntouched('country') }" formControlName="country" class="form-control"
+                id="country" placeholder="Country name">
+              <div *ngIf="formControlInvalidOrUntouched('country')" class="invalid-feedback">
+                <div *ngIf="formControlByName('country').hasError('required')">Country is required</div>
+              </div>
+            </div>
+
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary mr-1" [disabled] = "!companyForm.valid || formBusy ">
+            <i class="fa fa-dot-circle-o" *ngIf="!formBusy"></i> <span *ngIf="!formBusy">Submit</span>
+            <i class="fa fa-spinner fa-spin" *ngIf="formBusy"></i></button>
+          <button type="reset" class="btn btn-sm btn-danger" (click)="companyForm.reset()">
+            <i class="fa fa-ban"></i> Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

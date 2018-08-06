@@ -17,6 +17,11 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <tr role="role" *ngIf="showSpinner" class="even" align="center">
+                          <td colspan="2">
+                            <i class="fa fa-spinner fa-pulse fa-3x fa-w-16"></i>
+                          </td>
+                        </tr>
                         <tr role="row" class="odd" *ngFor="let user of users | async">
                           <td class="">{{ user.name }}</td>
                           <td>{{ user.email }}</td>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginError: string;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private afAuth: AngularFireAuth
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -38,6 +43,14 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
     .then( data => {
       this.authService.setLoggedInStatus(true);
+
+      this.afAuth.auth.onIdTokenChanged(
+        (token: any) => {
+          if (token) {
+            sessionStorage.userToken = token.qa;
+          }
+        }
+      );
       this.router.navigate(['/dashboard']);
     } )
     .catch( err => this.loginError = err.message );

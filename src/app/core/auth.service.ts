@@ -72,6 +72,7 @@ export class AuthService {
    * Interacts with Firebase to logout user
    */
   logout() {
+    sessionStorage.userToken = '';
     return this.afAuth.auth.signOut();
   }
 

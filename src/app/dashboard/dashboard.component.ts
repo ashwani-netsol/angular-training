@@ -8,20 +8,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  greetUser: string;
-  dashboardLandingPage: boolean = false;
-  router:any;
-
-  constructor(private _router: Router) {
-    this.router = _router;
-    
-    /**
-     * Check if the current route is dashboard page
-     */
-    this.router.events.subscribe((route) => {
-      this.dashboardLandingPage = (this.router.url == '/dashboard');
-    });
-  }
+  constructor() {}
 
   ngOnInit() {
   }

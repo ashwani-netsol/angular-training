@@ -11,9 +11,11 @@ import { Observable } from 'rxjs';
 export class UserComponent implements OnInit {
 
   users: Observable<User[]>;
+  showSpinner: boolean = true;
 
   constructor(private userService: UserService) {
     this.users = this.userService.getUsers();
+    this.users.subscribe(() => this.showSpinner = false)
   }
 
   ngOnInit() {

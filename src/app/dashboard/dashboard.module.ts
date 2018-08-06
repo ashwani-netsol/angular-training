@@ -7,12 +7,16 @@ import { SidebarComponent } from './elements/sidebar/sidebar.component';
 import { BreadcrumbBarComponent } from './elements/breadcrumb-bar/breadcrumb-bar.component';
 import { UserComponent } from './components/user/user.component';
 import { GreetingPipe } from './elements/pipes/greeting.pipe';
+import { LandingComponent } from './components/landing/landing.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     DashboardRoutingModule
   ],
-  declarations: [DashboardComponent, HeaderComponent, SidebarComponent, BreadcrumbBarComponent, UserComponent, GreetingPipe]
+  declarations: [DashboardComponent, HeaderComponent, SidebarComponent, BreadcrumbBarComponent, UserComponent, GreetingPipe, LandingComponent]
 })
 export class DashboardModule { }
