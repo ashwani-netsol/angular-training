@@ -4,6 +4,9 @@ import { CompanyService } from '../../services/company.service';
 import { Observable } from 'rxjs';
 import { Company } from '../../../core/models/company';
 
+import { UploadFileService } from '../../services/FileStorage/upload-file.service';
+import { FileUpload } from '../../models/file-upload';
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -16,12 +19,19 @@ export class LandingComponent implements OnInit {
   formBusy: boolean = false;
   companies: Observable<Company[]>;
   showSpinner: boolean = true;
+
+  selectedFiles: FileList;
+  currentFileUpload: FileUpload;
+  progress: { percentage: number } = { percentage: 0 };
   
   ngOnInit() {
     
   }
 
-  constructor(private companyService: CompanyService) {
+  constructor(
+    private companyService: CompanyService,
+    private uploadService: UploadFileService
+  ) {
     this.companyForm = new FormGroup({
       companyName: new FormControl(null, Validators.compose([
         Validators.required,
@@ -74,5 +84,17 @@ export class LandingComponent implements OnInit {
       this.companyForm.reset();
     })
     .catch ( err => { console.error(err) });
+  }
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  upload() {
+    const file = this.selectedFiles.item(0);
+    this.selectedFiles = undefined;
+
+    this.currentFileUpload = new FileUpload(file);
+    this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
   }
 }

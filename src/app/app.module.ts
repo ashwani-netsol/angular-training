@@ -10,6 +10,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
+
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
@@ -24,6 +28,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFireModule.initializeApp(environment.firebase, "test-firebase-ced8c"),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
