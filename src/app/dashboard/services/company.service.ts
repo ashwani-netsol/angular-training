@@ -17,7 +17,7 @@ export class CompanyService {
     return this.collection.valueChanges();
   }
 
-  create (company: Company) : Promise<any>{
+  create (company: Company) : Promise<any> {
     return this.collection.add(company);
   }
 }

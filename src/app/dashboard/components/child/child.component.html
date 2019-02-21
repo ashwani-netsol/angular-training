@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-header">
+    <strong>Landing's Child</strong>
+    <input type="button" (click)="clickChildButton()" value="Shout" class="btn btn-sm btn-primary pull-right" />
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <p>I am child here, they do not take me seriously!</p>
+        <table class="table table-striped table-bordered datatable dataTable no-footer users-list" id="DataTables_Table_0" role="grid"
+                aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <td>{{ child }}</td>
+            </tr>
+            <tr>
+              <th>Group</th>
+              <td>{{ childGroup }}</td>
+            </tr>
+            <tr>
+              <th>College</th>
+              <td>{{ collegeName }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { CompanyService } from '../../services/company.service';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { FileUpload } from '../../models/file-upload';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnChanges {
   
   companyForm: FormGroup;
   companySuccess: string | boolean = false;
@@ -23,9 +23,19 @@ export class LandingComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   progress: { percentage: number } = { percentage: 0 };
+
+  childName: string = 'Johnny Depp Junior';
+  collegeName: string = 'Centennial College of Excellence';
   
   ngOnInit() {
-    
+  }
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    console.log(changes);
+  }
+
+  clickedButton(clicked: boolean) {
+    alert('Parents are listening to their children');
   }
 
   constructor(
@@ -96,5 +106,10 @@ export class LandingComponent implements OnInit {
 
     this.currentFileUpload = new FileUpload(file);
     this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+  }
+
+  testChildInteraction() {
+    this.childName = 'Chetan Bhagat'
+    this.collegeName = ''
   }
 }

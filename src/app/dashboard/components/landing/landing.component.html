@@ -56,6 +56,13 @@
   </div>
 
   <div class="col-sm-6">
+    <input type="button" (click)="landingChild.alertInChild()" value="Change Child" class="btn btn-sm btn-primary mb-2"/>
+
+    <app-child #landingChild
+      [childName]="childName"
+      [collegeName]="collegeName"
+      (buttonClicked)="clickedButton($event)"
+    ></app-child>
     <div class="card">
       <div class="card-header">
         <strong>Create Company</strong>

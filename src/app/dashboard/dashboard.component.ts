@@ -13,4 +13,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  independentElement () {
+    alert('I am Angular Element!');
+  }
 }

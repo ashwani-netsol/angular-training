@@ -6,6 +6,12 @@
       <div class="container-fluid mt-4">
         <div class="animated fadeIn">
           <router-outlet></router-outlet>
+
+          <app-child
+            [childName]="'Ashwani Goyal'"
+            [collegeName]="'Royal Cambridge School'"
+            (buttonClicked)="independentElement()"
+          ></app-child>
         </div>
       </div>
     </main>
